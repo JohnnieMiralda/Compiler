@@ -19,7 +19,7 @@ namespace Compiler.Core.Statements
         {
             var code = GetCodeInit(tabs);
             code += $"if({Expression.Generate()}):{Environment.NewLine}{{{Environment.NewLine}";
-            code += $"{Statement.Generate(tabs + 1)}{Environment.NewLine}}}";
+            code += $"{Statement.Generate(tabs + 1)}{Environment.NewLine}}}{Environment.NewLine}";
             return code;
         }
 

@@ -19,10 +19,10 @@ namespace Compiler.Core
         Void,
         New,
      //tipos de datos
+        ListKeyword,
         BasicType,
         IntKeyword,
         IntConstant,
-        IntListKeyword,
         IntListConstant,
         FloatKeyword,
         FloatConstant,
@@ -41,6 +41,8 @@ namespace Compiler.Core
         YearKeyword,
         MonthKeyword,
         DayKeyword,
+        TrueKeyword,
+        FalseKeyword,
      //tipos de operacciones
         //aritmeticas
         Plus,

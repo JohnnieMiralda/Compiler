@@ -25,7 +25,7 @@ namespace Compiler.Lexer
 
                 //tipos
                 { "int", TokenType.IntKeyword },
-                { "list<int>", TokenType.IntListKeyword },
+                { "list", TokenType.ListKeyword },
                 { "float", TokenType.FloatKeyword },
                 { "list<float>", TokenType.FloatListKeyword },
                 { "bool", TokenType.BoolKeyword },
@@ -36,6 +36,8 @@ namespace Compiler.Lexer
                 { "day", TokenType.DayKeyword},
                 { "month", TokenType.MonthKeyword},
                 { "year", TokenType.YearKeyword},
+                { "true", TokenType.TrueKeyword},
+                { "false", TokenType.FalseKeyword},
 
                 //extra
                 { "class", TokenType.Class },
@@ -69,7 +71,8 @@ namespace Compiler.Lexer
                     {
                         switch (lexeme.ToString())
                         {
-                            case "list<int>":
+                            /*
+                            case "list<":
                                 currentChar = PeekNextChar();
                                 if (currentChar == '(')
                                 {
@@ -120,7 +123,36 @@ namespace Compiler.Lexer
                                         Lexeme = lexeme.ToString()
                                     };
                                 }
+                                break;*/
+                            case "datetime":
+                                currentChar = PeekNextChar();
+                                if (currentChar == '(')
+                                {
+                                    return new Token
+                                    {
+                                        TokenType = TokenType.DateConstant,
+                                        Column = input.Position.Column,
+                                        Line = input.Position.Line,
+                                        Lexeme = lexeme.ToString()
+                                    };
+                                }
                                 break;
+                            case "true":
+                                return new Token
+                                    {
+                                        TokenType = TokenType.BoolConstant,
+                                        Column = input.Position.Column,
+                                        Line = input.Position.Line,
+                                        Lexeme = lexeme.ToString()
+                                    };
+                            case "false":
+                                return new Token
+                                {
+                                    TokenType = TokenType.BoolConstant,
+                                    Column = input.Position.Column,
+                                    Line = input.Position.Line,
+                                    Lexeme = lexeme.ToString()
+                                };                               
                         }
 
 

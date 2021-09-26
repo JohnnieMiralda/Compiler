@@ -26,8 +26,8 @@
 
         public override string Generate(int tabs)
         {
-            var code = $"{FirstStatement?.Generate(tabs)};";
-            code += $"{NextStatement?.Generate(tabs)};";
+            var code = $"{FirstStatement?.Generate(tabs)}";
+            code += $"{NextStatement?.Generate(tabs)}";
             return code;
         }
     }

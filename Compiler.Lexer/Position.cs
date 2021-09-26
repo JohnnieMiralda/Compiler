@@ -19,7 +19,7 @@ namespace Compiler.Lexer
             Column = column;
         }
 
-        public static Position Start => new Position(0, 0, 0);
+        public static Position Start => new Position(0, 1, 1);
 
         public Position MovePointer(char @char)
         {

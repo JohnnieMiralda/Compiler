@@ -15,18 +15,20 @@ namespace Compiler.Core.Expressions
 
         public override dynamic Evaluate()
         {
-            switch (type.Lexeme)
+            Console.WriteLine(type.Lexeme.ToString());
+            switch (type.Lexeme.ToString())
             {
-                case "date":
+                case "datetime":
                     return DateTime.Parse(Lexeme);
                 case "list<int>":
-                    return new Lexeme;
+                    return  Lexeme;
+                /*
                 case "list<float>":
                     return new Lexeme;
                 case "list<bool>":
                     return new Lexeme;
                 case "list<string>":
-                    return new Lexeme;
+                    return new Lexeme;*/
                 case "year":
                 case "month":
                 case "day":
@@ -39,6 +41,11 @@ namespace Compiler.Core.Expressions
 
         public override string Generate()
         {
+            if (Token.TokenType == TokenType.DateConstant)
+            {   
+
+                return $"new {Token.Lexeme}{Lexeme.ToString().Substring(0,3)}/{Lexeme.Substring(3, 2)}/{Lexeme.Substring(5, 5)}";
+            }
             return Token.Lexeme;
         }
         // datetime carra = 07/10/1999;

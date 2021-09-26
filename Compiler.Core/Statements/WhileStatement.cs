@@ -19,8 +19,8 @@ namespace Compiler.Core.Statements
         public override string Generate(int tab)
         {
             var code = GetCodeInit(tab);
-            code += $"while({Expression.Generate()}):{Environment.NewLine} {{{Environment.NewLine} ";
-            code += $"{Block.Generate(tab +1)}{Environment.NewLine} }}";
+            code += $"while({Expression.Generate()}):{Environment.NewLine}{{{Environment.NewLine} ";
+            code += $"{Block.Generate(tab +1)}{Environment.NewLine}}}{Environment.NewLine} ";
             return code;
         }
 

@@ -17,19 +17,20 @@ namespace Compiler.Core
         }
 
         public static Type Int => new Type("int", TokenType.BasicType);
-        public static Type ListInt => new Type("list<int>", TokenType.BasicType);
+        //public static Type ListInt => new Type("list<int>", TokenType.BasicType);
         public static Type Float => new Type("float", TokenType.BasicType);
-        public static Type ListFloat => new Type("list<float>", TokenType.BasicType);
+        //public static Type ListFloat => new Type("list<float>", TokenType.BasicType);
         public static Type Bool => new Type("bool", TokenType.BasicType);
-        public static Type ListBool => new Type("list<bool>", TokenType.BasicType);
+        //public static Type ListBool => new Type("list<bool>", TokenType.BasicType);
         public static Type String => new Type("string", TokenType.BasicType);
-        public static Type ListString => new Type("list<string>", TokenType.BasicType);
+        //public static Type ListString => new Type("list<string>", TokenType.BasicType);
         public static Type Date => new Type("datetime", TokenType.BasicType);
         public static Type Day => new Type("day", TokenType.BasicType);
         public static Type Month => new Type("month", TokenType.BasicType);
         public static Type Year => new Type("year", TokenType.BasicType);
         public static Type Void => new Type("void", TokenType.BasicType);
         public static Type Class => new Type("class", TokenType.BasicType);
+        public static Type List => new Type("list", TokenType.BasicType);
 
 
         public bool Equals(Type other)
