@@ -1,0 +1,46 @@
+﻿{
+    float o;
+    int x;
+    int y;
+
+	var fecha;
+	fecha = 07/10/1999;
+
+    int w;
+    string a;
+    y := 1;
+    o:= 5.89;
+    a := 'hola peter!' + o;
+	
+    if(o>0)
+    {
+	print('yes');
+	if(0 > 1)
+	{
+	    print('sure');
+	}
+	else
+	{
+	    print('who knows');
+	}
+    }
+    else if(y = 1)
+    {
+	print('no');
+	if(y > 2)
+	    print('true');
+
+	if(0 > 1)
+	{
+	    int one;
+	    int two;
+	    one := 1;
+	    two := 2;
+	    print(one+two);
+       }
+    }
+
+	void carranza(){
+		
+	}
+}
