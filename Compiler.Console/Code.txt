@@ -1,57 +1,76 @@
-﻿{
-    float o;
-    int x;
-    int y;
-	datetime j;
-    int w;
-    string a;
+﻿
+class sarah{
 
-	bool sarita;
-	bool gn;
-	gn=false;
-	sarita= true;
+	int hola(int u){
+		list<int> x;
+		x= list<int>(1,2,3);
 
-
-	j = datetime(07/10/1999);
-    y = 1;
-    o= 5.89;
-    a = 'hola peter!' + o;
-
-	if(gn && !sarita){
-		print('bffs');
+		foreach( int y in x){
+			print(y);
+		}
+		return u;
 	}
+	void main(){
+		float o;
+		int x;
+		int y;
+		datetime j;
+		int w;
+		string a;
+		list<bool> andres;
 
-	while(y==1){
-		y=2;
 
-	}
-    if(o>0)
-    {
-	print('yes');
+		bool sarita;
+		bool gn;
+		gn=false;
+		sarita= true;
 	
-	if(0 > 1)
-	{
-	    print('sure');
-	}
-	else
-	{
-	    print('who knows');
-	}
-    }
-    else if(y == 1)
-    {
-	print('no');
-	if(y > 2)
-	    print('true');
+		andres= list<bool>(true,false,false);
 
-	if(0 > 1)
-	{
-	    int one;
-	    int two;
-	    one = 1;
-	    two = 2;
-	    print(one+two);
-       }
-    }
+
+		j = datetime(07/10/1999);
+		y = 1;
+		o= 5.89;
+		a = 'hola peter!' + o;
+
+		
+
+		if(true && false){
+			print('bffs');
+		}
+
+		while(y==1){
+			y=2;
+
+		}
+		if(o>0)
+		{
+			print('yes');
 	
+			if(0 > 1)
+			{
+				print('sure');
+			}
+			else
+			{
+				print('who knows');
+			}
+		}
+		else if(y == 1)
+		{
+			print('no');
+			if(y > 2)
+				print('true');
+
+			if(0 > 1)
+			{
+				int one;
+				int two;
+				one = 1;
+				two = 2;
+				print(one+two);
+			 }
+		}
+	
+	}
 }

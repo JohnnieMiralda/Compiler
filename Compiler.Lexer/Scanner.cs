@@ -20,8 +20,9 @@ namespace Compiler.Lexer
                 { "if", TokenType.IfKeyword  },
                 { "else", TokenType.ElseKeyword },
                 { "while", TokenType.WhileKeyword },
-                { "foreach", TokenType.StringKeyword },
+                { "foreach", TokenType.ForeachKeyword },
                 { "in", TokenType.InKeyword },
+                { "return", TokenType.ReturnKeyword },
 
                 //tipos
                 { "int", TokenType.IntKeyword },
@@ -71,59 +72,6 @@ namespace Compiler.Lexer
                     {
                         switch (lexeme.ToString())
                         {
-                            /*
-                            case "list<":
-                                currentChar = PeekNextChar();
-                                if (currentChar == '(')
-                                {
-                                    return new Token
-                                    {
-                                        TokenType = TokenType.IntListConstant,
-                                        Column = input.Position.Column,
-                                        Line = input.Position.Line,
-                                        Lexeme = lexeme.ToString()
-                                    };
-                                }
-                                break;
-                            case "list<float>":
-                                currentChar = PeekNextChar();
-                                if (currentChar == '(')
-                                {
-                                    return new Token
-                                    {
-                                        TokenType = TokenType.FloatListConstant,
-                                        Column = input.Position.Column,
-                                        Line = input.Position.Line,
-                                        Lexeme = lexeme.ToString()
-                                    };
-                                }
-                                break;
-                            case "list<bool>":
-                                currentChar = PeekNextChar();
-                                if (currentChar == '(')
-                                {
-                                    return new Token
-                                    {
-                                        TokenType = TokenType.BoolListConstant,
-                                        Column = input.Position.Column,
-                                        Line = input.Position.Line,
-                                        Lexeme = lexeme.ToString()
-                                    };
-                                }
-                                break;
-                            case "list<string>":
-                                currentChar = PeekNextChar();
-                                if (currentChar == '(')
-                                {
-                                    return new Token
-                                    {
-                                        TokenType = TokenType.StringListConstant,
-                                        Column = input.Position.Column,
-                                        Line = input.Position.Line,
-                                        Lexeme = lexeme.ToString()
-                                    };
-                                }
-                                break;*/
                             case "datetime":
                                 currentChar = PeekNextChar();
                                 if (currentChar == '(')

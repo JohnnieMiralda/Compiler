@@ -18,6 +18,7 @@ namespace Compiler.Core
         Class,
         Void,
         New,
+        ReturnKeyword,
      //tipos de datos
         ListKeyword,
         BasicType,

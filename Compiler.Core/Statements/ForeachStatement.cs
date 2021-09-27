@@ -5,21 +5,25 @@ using System.Text;
 
 namespace Compiler.Core.Statements
 {
-    public class WhileStatement : Statement
+    public class ForeachStatement : Statement
     {
-        public WhileStatement(TypedExpression expression, Statement block)
+        public ForeachStatement(Token tipo,Token name ,Token listname, Statement block)
         {
-            Expression = expression;
+            Tipo = tipo;
+            Name = name;
+            Listname = listname;
             Block = block;
         }
 
-        public TypedExpression Expression { get; }
+        public Token Tipo { get; }
+        public Token Name { get; }
+        public Token Listname { get; }
         public Statement Block { get; }
 
         public override string Generate(int tab)
         {
             var code = GetCodeInit(tab);
-            code += $"while({Expression.Generate()}):{Environment.NewLine}"; // {{{Environment.NewLine} ";
+            code += $"for ( let {Name.Lexeme} in {Listname.Lexeme} ){Environment.NewLine}"; // {{{Environment.NewLine} ";
             for (int x = 0; x < tab; x++)
             {
                 code += "\t";
@@ -36,17 +40,14 @@ namespace Compiler.Core.Statements
 
         public override void Interpret()
         {
-            if (Expression.Evaluate())
-            {
-                Block.Interpret();
-            }
+            throw new NotImplementedException();
         }
 
         public override void ValidateSemantic()
         {
-            if (Expression.GetExpressionType() != Type.Bool)
+            if (Listname.TokenType != Tipo.TokenType)
             {
-                throw new ApplicationException("A boolean is required in while");
+                throw new ApplicationException("Variable and list type must be the same type");
             }
         }
     }

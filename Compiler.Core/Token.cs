@@ -6,6 +6,8 @@ namespace Compiler.Core
 {
     public class Token
     {
+       
+
         public TokenType TokenType { get; set; }
 
         public string Lexeme { get; set; }

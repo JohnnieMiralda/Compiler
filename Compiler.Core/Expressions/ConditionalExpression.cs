@@ -38,7 +38,7 @@ namespace Compiler.Core.Expressions
                 RightExpression.GetExpressionType() != Type.String)
             {
                 return $"{LeftExpression.Generate()} {Token.Lexeme} str({RightExpression.Generate()})";
-            }else if ( == null)
+            }else if (RightExpression.Generate() == null)
             {
                 return $"{LeftExpression.Generate()} {Token.Lexeme} ";
             }
