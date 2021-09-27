@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Compiler.Core.Expressions
 {
     public class ConstantExpression : TypedExpression
     {
+        private int mos;
+        private float mos2;
+        private bool mos3;
+
         public ConstantExpression(Token token, Type type, string lexeme) : base(token, type)
         {
             Lexeme = lexeme;
@@ -20,15 +25,16 @@ namespace Compiler.Core.Expressions
             {
                 case "datetime":
                     return DateTime.Parse(Lexeme);
-                case "list<int>":
-                    return  Lexeme;
-                /*
-                case "list<float>":
-                    return new Lexeme;
-                case "list<bool>":
-                    return new Lexeme;
-                case "list<string>":
-                    return new Lexeme;*/
+                case "listint":
+                    return Lexeme.Split(',').Where(m => int.TryParse(m, out mos)).Select(m => int.Parse(m)).ToList();
+                case "listfloat":
+                    return Lexeme.Split(',').Where(m => float.TryParse(m, out mos2)).Select(m => float.Parse(m)).ToList();
+                case "listbool":
+                    return Lexeme.Split(',').Where(m => bool.TryParse(m, out mos3)).Select(m => bool.Parse(m)).ToList();
+                case "liststring":
+                    return Lexeme.Split(',').ToList();
+
+
                 case "year":
                 case "month":
                 case "day":
@@ -41,12 +47,15 @@ namespace Compiler.Core.Expressions
 
         public override string Generate()
         {
-            if (Token.TokenType == TokenType.DateConstant)
-            {   
-
-                return $"new {Token.Lexeme}{Lexeme.ToString().Substring(0,3)}/{Lexeme.Substring(3, 2)}/{Lexeme.Substring(5, 5)}";
+            switch (Token.TokenType)
+            {
+                case TokenType.DateConstant:
+                    return $"new {Token.Lexeme}{Lexeme.ToString().Substring(0, 3)}/{Lexeme.Substring(3, 2)}/{Lexeme.Substring(5, 5)}";
+                case TokenType.ListKeyword:
+                    return $"[{Lexeme}]";
+                default:
+                    return Token.Lexeme;
             }
-            return Token.Lexeme;
         }
         // datetime carra = 07/10/1999;
         // var carra = new date(07/10/199);

@@ -5,32 +5,36 @@ using System.Text;
 
 namespace Compiler.Core.Statements
 {
-    public class WhileStatement : Statement
+    public class MethodStatement : Statement
     {
-        public WhileStatement(TypedExpression expression, Statement block)
+        public MethodStatement(Token name,Statement parametros, Statement block)
         {
-            Expression = expression;
+            Name = name;
+            Parametros = parametros;
             Block = block;
         }
 
+        public Token Name { get; }
+        public Statement Parametros { get; }
         public TypedExpression Expression { get; }
         public Statement Block { get; }
 
         public override string Generate(int tab)
         {
             var code = GetCodeInit(tab);
-            code += $"while({Expression.Generate()}):{Environment.NewLine}"; // {{{Environment.NewLine} ";
+            code += $"function {Name.Lexeme}({Parametros?.Generate(0)}){Environment.NewLine}";// {{{Environment.NewLine}";
             for (int x = 0; x < tab; x++)
             {
                 code += "\t";
             }
             code += $"{{{Environment.NewLine}";
-            code += $"{Block.Generate(tab + 1)}{Environment.NewLine}";//     }}{Environment.NewLine} ";
+            code += $"{Block.Generate(tab + 1)}";// {Environment.NewLine}}}{Environment.NewLine} ";
             for (int x = 0; x < tab; x++)
             {
                 code += "\t";
             }
             code += $"}}{Environment.NewLine}";
+
             return code;
         }
 
@@ -44,10 +48,7 @@ namespace Compiler.Core.Statements
 
         public override void ValidateSemantic()
         {
-            if (Expression.GetExpressionType() != Type.Bool)
-            {
-                throw new ApplicationException("A boolean is required in while");
-            }
+           
         }
     }
 }

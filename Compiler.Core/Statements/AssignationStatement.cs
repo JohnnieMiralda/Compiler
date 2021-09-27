@@ -6,19 +6,21 @@ namespace Compiler.Core.Statements
 {
     public class AssignationStatement : Statement
     {
-        public AssignationStatement(Id id, TypedExpression expression)
+        public AssignationStatement(Id id, TypedExpression expression, Statement statement)
         {
             Id = id;
             Expression = expression;
+            Statement = statement;
         }
 
         public Id Id { get; }
         public TypedExpression Expression { get; }
+        public Statement Statement { get; }
 
         public override string Generate(int tabs)
         {
             var code = GetCodeInit(tabs);
-            code += $"var {Id.Generate()} = {Expression.Generate()};{Environment.NewLine}";
+            code += $"{Id.Generate()} = {Expression?.Generate()}{Statement?.Generate(0)};{Environment.NewLine}";
             return code;
         }
 

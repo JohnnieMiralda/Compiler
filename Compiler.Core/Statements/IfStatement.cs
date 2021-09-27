@@ -18,8 +18,18 @@ namespace Compiler.Core.Statements
         public override string Generate(int tabs)
         {
             var code = GetCodeInit(tabs);
-            code += $"if({Expression.Generate()}):{Environment.NewLine}{{{Environment.NewLine}";
-            code += $"{Statement.Generate(tabs + 1)}{Environment.NewLine}}}{Environment.NewLine}";
+            code += $"if({Expression.Generate()}):{Environment.NewLine}";// {{{Environment.NewLine}";
+            for (int x = 0; x < tabs; x++)
+            {
+                code += "\t";
+            }
+            code += $"{{{Environment.NewLine}";
+            code += $"{Statement.Generate(tabs + 1)}{Environment.NewLine}";//}}{Environment.NewLine}";
+            for (int x = 0; x < tabs; x++)
+            {
+                code += "\t";
+            }
+            code += $"}}{Environment.NewLine}";
             return code;
         }
 

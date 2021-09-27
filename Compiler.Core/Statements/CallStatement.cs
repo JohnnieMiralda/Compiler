@@ -20,7 +20,7 @@ namespace Compiler.Core.Statements
         public override void Interpret()
         {
             var method = EnvironmentManager.GetSymbolForEvaluation(Id.Token.Lexeme);
-            if (method.Id.Token.Lexeme == "print")
+            if (method.Id.Token.Lexeme == "Console.WriteLine" || method.Id.Token.Lexeme == "Console.ReadLine")
             {
                 InnerEvaluate(Arguments);
             }
@@ -36,7 +36,7 @@ namespace Compiler.Core.Statements
             else
             {
                 var typedExpression = arguments as TypedExpression;
-                Console.WriteLine(typedExpression.Evaluate());
+                Console.WriteLine(typedExpression.Generate());
             }
         }
 
@@ -87,7 +87,7 @@ namespace Compiler.Core.Statements
             }
             else
             {
-                code += arguments.Generate();
+                code += arguments?.Generate();
             }
             return code;
         }

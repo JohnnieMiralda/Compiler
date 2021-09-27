@@ -20,8 +20,9 @@ namespace Compiler.Lexer
                 { "if", TokenType.IfKeyword  },
                 { "else", TokenType.ElseKeyword },
                 { "while", TokenType.WhileKeyword },
-                { "foreach", TokenType.StringKeyword },
+                { "foreach", TokenType.ForeachKeyword },
                 { "in", TokenType.InKeyword },
+                { "return", TokenType.ReturnKeyword },
 
                 //tipos
                 { "int", TokenType.IntKeyword },
@@ -60,7 +61,7 @@ namespace Compiler.Lexer
                 {
                     lexeme.Append(currentChar);
                     currentChar = PeekNextChar();
-                    while (char.IsLetterOrDigit(currentChar))
+                    while (char.IsLetterOrDigit(currentChar) || currentChar=='.')
                     {
                         currentChar = GetNextChar();
                         lexeme.Append(currentChar);
@@ -71,59 +72,6 @@ namespace Compiler.Lexer
                     {
                         switch (lexeme.ToString())
                         {
-                            /*
-                            case "list<":
-                                currentChar = PeekNextChar();
-                                if (currentChar == '(')
-                                {
-                                    return new Token
-                                    {
-                                        TokenType = TokenType.IntListConstant,
-                                        Column = input.Position.Column,
-                                        Line = input.Position.Line,
-                                        Lexeme = lexeme.ToString()
-                                    };
-                                }
-                                break;
-                            case "list<float>":
-                                currentChar = PeekNextChar();
-                                if (currentChar == '(')
-                                {
-                                    return new Token
-                                    {
-                                        TokenType = TokenType.FloatListConstant,
-                                        Column = input.Position.Column,
-                                        Line = input.Position.Line,
-                                        Lexeme = lexeme.ToString()
-                                    };
-                                }
-                                break;
-                            case "list<bool>":
-                                currentChar = PeekNextChar();
-                                if (currentChar == '(')
-                                {
-                                    return new Token
-                                    {
-                                        TokenType = TokenType.BoolListConstant,
-                                        Column = input.Position.Column,
-                                        Line = input.Position.Line,
-                                        Lexeme = lexeme.ToString()
-                                    };
-                                }
-                                break;
-                            case "list<string>":
-                                currentChar = PeekNextChar();
-                                if (currentChar == '(')
-                                {
-                                    return new Token
-                                    {
-                                        TokenType = TokenType.StringListConstant,
-                                        Column = input.Position.Column,
-                                        Line = input.Position.Line,
-                                        Lexeme = lexeme.ToString()
-                                    };
-                                }
-                                break;*/
                             case "datetime":
                                 currentChar = PeekNextChar();
                                 if (currentChar == '(')
@@ -497,6 +445,22 @@ namespace Compiler.Lexer
                             return new Token
                             {
                                 TokenType = TokenType.Comma,
+                                Column = input.Position.Column,
+                                Line = input.Position.Line,
+                                Lexeme = lexeme.ToString()
+                            };
+                        case '"':
+                            lexeme.Append(currentChar);
+                            currentChar = GetNextChar();
+                            while (currentChar != '"')
+                            {
+                                lexeme.Append(currentChar);
+                                currentChar = GetNextChar();
+                            }
+                            lexeme.Append(currentChar);
+                            return new Token
+                            {
+                                TokenType = TokenType.StringConstant,
                                 Column = input.Position.Column,
                                 Line = input.Position.Line,
                                 Lexeme = lexeme.ToString()
